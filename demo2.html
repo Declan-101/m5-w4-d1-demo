@@ -5,7 +5,11 @@
   <title>DOM Tests</title>
   <script>
     function setBodyAttr(attr, value) {
-      if (document.body) document.body[attr] = value;
+      if (document.body) {
+        document.body[attr] = value;
+        // Keep the link demo working in browsers that ignore the legacy body.link property.
+        if (attr === 'link') document.getElementById('sample').style.color = value;
+      }
       else throw new Error("no support");
     }
   </script>
